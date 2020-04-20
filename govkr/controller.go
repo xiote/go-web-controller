@@ -1,17 +1,17 @@
 package govkr
 
-type WebDriver interface {
-	Get(url string) error
-}
+import (
+	"github.com/tebeka/selenium"
+)
 
-type Controller struct {
-	WebDriver
-}
-
-func NewController(webDriver WebDriver) Controller {
+func NewController(webDriver selenium.WebDriver) Controller {
 	return Controller{webDriver}
 }
 
-func (c *Controller) Get(url string) error {
+type Controller struct {
+	selenium.WebDriver
+}
+
+func (c *Controller) Navigate(url string) error {
 	return c.WebDriver.Get(url)
 }
